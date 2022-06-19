@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "SptheoNSX";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>SÁCH THEO NHÀ XUẤT BẢN</h2>
+
+
+
+<div class="row">
+    @foreach (var sp in Model)
+    {
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <a href="@Url.Action("Chitietsach", "StoreVegetables", new { id = sp.spID})">
+                    <img alt="@sp.tenSanPham" src="~/Content/images/@sp.hinhSanPham" width="200" />
+                    <div>
+                        <br />
+                        <h4 style="text-align:center">
+                            @sp.tenSanPham
+                        </h4>
+                        <p></p>
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-right">15 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star">
+                            </span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                        </p>
+                    </div>
+            </div>
+        </div>
+    }
+</div>
+

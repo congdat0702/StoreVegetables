@@ -1,0 +1,37 @@
+﻿@model StoreVegetables.Models.NhaSanXuat
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPAdmin.cshtml";
+}
+
+
+
+
+<div>
+    <h3>XÁC NHẬN XÓA NHÀ SẢN XUẤT/h3>
+    <h4 style="color:red">Bạn chắc chắn xóa nhà sản xuất này?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Nhà sản xuất:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenNSX)
+        </dd>
+
+        
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về Danh sách Nhà sản xuất", "Index")
+        </div>
+    }
+</div>

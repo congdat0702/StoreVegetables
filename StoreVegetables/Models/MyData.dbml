@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="StoreVegetables" Class="MyDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-GAPNNKK;Initial Catalog=StoreVegetables;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="StoreVegetablesConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Admin" Member="Admins">
+    <Type Name="Admin">
+      <Column Name="adminID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="hoten" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="useradmin" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietDonHang" Member="ChiTietDonHangs">
+    <Type Name="ChiTietDonHang">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="donhangID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="spID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="gia" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="DonHang_ChiTietDonHang" Member="DonHang" ThisKey="donhangID" OtherKey="donhangID" Type="DonHang" IsForeignKey="true" />
+      <Association Name="SanPham_ChiTietDonHang" Member="SanPham" ThisKey="spID" OtherKey="spID" Type="SanPham" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DonHang" Member="DonHangs">
+    <Type Name="DonHang">
+      <Column Name="donhangID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="thanhtoan" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="giaohang" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ngaydat" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="ngaygiao" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="khID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="DonHang_ChiTietDonHang" Member="ChiTietDonHangs" ThisKey="donhangID" OtherKey="donhangID" Type="ChiTietDonHang" />
+      <Association Name="KhachHang_DonHang" Member="KhachHang" ThisKey="khID" OtherKey="khID" Type="KhachHang" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KhachHang" Member="KhachHangs">
+    <Type Name="KhachHang">
+      <Column Name="khID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tenKH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="sdtKH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="diachiKH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="emailKH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PassWord" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="KhachHang_DonHang" Member="DonHangs" ThisKey="khID" OtherKey="khID" Type="DonHang" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NhaSanXuat" Member="NhaSanXuats">
+    <Type Name="NhaSanXuat">
+      <Column Name="nsxID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tenNSX" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="NhaSanXuat_SanPham" Member="SanPhams" ThisKey="nsxID" OtherKey="nsxID" Type="SanPham" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SanPham" Member="SanPhams">
+    <Type Name="SanPham">
+      <Column Name="spID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="theloaiID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tenSanPham" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="giaSanPham" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="hinhSanPham" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="motaSanPham" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="soluongton" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nsxID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="SanPham_ChiTietDonHang" Member="ChiTietDonHangs" ThisKey="spID" OtherKey="spID" Type="ChiTietDonHang" />
+      <Association Name="NhaSanXuat_SanPham" Member="NhaSanXuat" ThisKey="nsxID" OtherKey="nsxID" Type="NhaSanXuat" IsForeignKey="true" />
+      <Association Name="TheLoai_SanPham" Member="TheLoai" ThisKey="theloaiID" OtherKey="theloaiID" Type="TheLoai" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TheLoai" Member="TheLoais">
+    <Type Name="TheLoai">
+      <Column Name="theloaiID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tenTheLoai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="TheLoai_SanPham" Member="SanPhams" ThisKey="theloaiID" OtherKey="theloaiID" Type="SanPham" />
+    </Type>
+  </Table>
+</Database>

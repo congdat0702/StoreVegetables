@@ -1,0 +1,75 @@
+﻿@model StoreVegetables.Models.SanPham
+
+@{
+    ViewBag.Title = "Chitietsach";
+    Layout = "~/Views/Shared/_LayoutPAdmin.cshtml";
+}
+
+<div>
+    <h4>THÔNG TIN SẢN PHẨM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenSanPham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenSanPham)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.giaSanPham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.giaSanPham)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.motaSanPham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.motaSanPham)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hinhSanPham)
+        </dt>
+
+        <dd>
+            <img src="@Html.DisplayFor(model => model.hinhSanPham)" width="100" />
+
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.soluongton)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soluongton)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.theloaiID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => Model.TheLoai.tenTheLoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nsxID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => Model.NhaSanXuat.tenNSX)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "EditSanPham", new { id = Model.spID }) |
+    @Html.ActionLink("Trở về", "SanPham")
+</p>

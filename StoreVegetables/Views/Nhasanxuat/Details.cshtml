@@ -1,0 +1,27 @@
+﻿@model StoreVegetables.Models.NhaSanXuat
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPAdmin.cshtml";
+}
+
+<div>
+    <h4>THÔNG TIN NHÀ SẢN XUẤT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Nhà Sản Xuất:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenNSX)
+        </dd>
+
+       
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.tenNSX }) |
+    @Html.ActionLink("Trở về trang danh sách Nhà sản xuất", "Index")
+</p>

@@ -1,0 +1,8 @@
+﻿<div class="list-group">
+    @foreach (var tl in Model)
+    {
+        <a href="@Url.Action("SPtheoNSX","StoreVegetables", new {id = tl.theloaiID})" class="list-group-item"> @tl.tenTheLoai</a>
+
+    }
+</div>
+

@@ -1,0 +1,98 @@
+﻿@using StoreVegetables.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<SanPham>
+
+@{
+    ViewBag.Title = "SanPham";
+    Layout = "~/Views/Shared/_LayoutPAdmin.cshtml";
+}
+
+@helper Trucate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length) <Text> ..... </Text>
+    }
+}
+
+<h2>QUẢN LÝ DANH MỤC SÁCH</h2>
+
+<p>
+    @Html.ActionLink("THÊM MỚI", "CreateSanPham")
+</p>
+<table class="table">
+    <tr>
+        <th width="220">
+            TÊN SẢN PHẨM
+        </th>
+        <th width="250">
+            MÔ TẢ
+        </th>
+        <th width="100">
+            GIÁ BÁN
+        </th>
+        <th width="200">
+            ẢNH SẢN PHẨM
+        </th>
+        <th width="150">
+            SỐ LƯỢNG
+        </th>
+        <th width="200">
+            LOẠI SẢN PHẨM
+        </th>
+        <th width="200">
+            NHÀ SẢN XUẤT
+        </th>
+        <th width="350"></th>
+    </tr>
+
+    @foreach (var sp in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => sp.tenSanPham)
+            </td>
+            <td>
+                @Html.DisplayFor(model => sp.motaSanPham)
+            </td>
+            <td>
+                @Html.DisplayFor(model => sp.giaSanPham)
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(model => sp.hinhSanPham)" width="100" />
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => sp.soluongton)
+            </td>
+            <td>
+                @Html.DisplayFor(model => sp.TheLoai.tenTheLoai)
+            </td>
+            <td>
+                @Html.DisplayFor(model => sp.NhaSanXuat.tenNSX)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "EditSanPham", new { id = sp.spID }) |
+                @Html.ActionLink("Chi tiết", "Chitietsanpham", new { id = sp.spID }) |
+                @Html.ActionLink("Xóa", "DeleteSanPham", new { id = sp.spID })
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    Trang @(Model.PageNumber>Model.PageCount?3:Model.PageNumber) /@Model.PageCount
+</div>
+<div class="Menutrang">
+    @Html.PagedListPager(Model, page => Url.Action("Sach", new { page = page }))
+</div>
+
+<style>
+    .Menutran li {
+        display: inline
+    }
+</style>
